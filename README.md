@@ -1,0 +1,2 @@
+# hexagonaly
+Experimental hexagonal array
