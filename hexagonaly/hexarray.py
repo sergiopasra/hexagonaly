@@ -58,6 +58,21 @@ def oddr_to_cube(r, q):
     y = -x-z
     return x, y, z
 
+import numpy
+
+EVEN_Q, ODD_Q, EVEN_R, ODD_R = range(4)
 
 class HexArray(object):
-    pass
+    def __init__(self, rows, columns, mode=ODD_R, dtype='float'):
+        self.r = rows
+        self.q = columns
+        self.n = rows * columns
+        self.mode = mode
+        self.elems = numpy.empty((self.n,), dtype=dtype)
+
+    def get(r, c):
+        return 0.0
+
+    def set(val, r, c):
+        return
+
