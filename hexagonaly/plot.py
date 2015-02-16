@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 C1 = 1.0 / math.sqrt(3.0)
 C2 = C1 / 2.0
+C3 = math.sqrt(3.0) / 2.0
 verts = [[0,C1], [0.5, C2], [0.5, -C2], [0, -C1], [-0.5, -C2], [-0.5, C2]]
 
 u = np.array([1,0])
@@ -13,13 +14,12 @@ v = np.array([0.5, math.sqrt(3.0) / 2.0])
 
 nx = 10
 ny = 10
-off = np.empty((nx*ny, 2))
-# Optimize me
-m = 0
-for i in range(nx):
-    for j in range(ny):
-        off[m] = i * u + j *v 
-        m += 1
+
+xx, yy = np.meshgrid(np.arange(nx, dtype=np.float), np.arange(ny, dtype=np.float))
+
+xx[1::2,:] += 0.5
+yy *= C3
+off = np.array([xx.ravel(), yy.ravel()]).T
 
 fig = plt.figure()
 axes = fig.add_subplot(111)
@@ -34,5 +34,5 @@ collection = mcoll.PolyCollection(
 )
 
 axes.add_collection(collection)
-axes.autoscale_view()
 plt.show()
+
